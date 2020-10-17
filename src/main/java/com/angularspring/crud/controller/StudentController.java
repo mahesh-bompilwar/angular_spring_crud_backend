@@ -32,7 +32,7 @@ public class StudentController {
         return studentService.addStudent(student);
     }
 
-    @PostMapping("updateStudent")
+    @PutMapping("updateStudent")
     public Student updateStudent(@RequestBody Student student){
         return studentService.updateStudent(student);
     }
@@ -40,5 +40,9 @@ public class StudentController {
     @PostMapping(value = "authenticate")
     public Student authenticateStudent(@RequestParam String userName, @RequestParam String password) {
         return studentService.isAuthenticated(userName, password);
+    }
+    @DeleteMapping ("deleteStudent/{id}")
+    public Message deleteStudent(@PathVariable(value = "id") long id){
+        return studentService.deleteStudent(id);
     }
 }

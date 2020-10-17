@@ -31,10 +31,23 @@ public class StudentService {
         return message;
     }
 
+    public Message deleteStudent(long id) {
+        Message message = new Message();
+        if (studentRepository.findById(id) != null) {
+            studentRepository.deleteById(id);
+            message.setMessage("Student Deleted Successfully");
+            message.setFlag(true);
+        } else {
+            message.setMessage("Student does not exist");
+            message.setFlag(false);
+        }
+        return message;
+    }
+
     public Student updateStudent(Student student) {
-        if(isUserExist(student)){
+        if (isUserExist(student)) {
             return studentRepository.save(student);
-        }else {
+        } else {
             return null;
         }
     }
